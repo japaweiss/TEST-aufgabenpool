@@ -1,0 +1,60 @@
+<<echo=FALSE, results=hide>>=
+
+## DATA GENERATION
+k <- sample(seq (1000,10000, by=1000), 1)
+
+z <- sample(seq (1,6, by=1), 1)
+
+z1 <- z/100
+
+mmy1 <- sample(seq (1,12, by=1), 1)
+mmy2 <- sample(c(1,3,5,7,8,10,12), 1)
+mmy1a <- 12 - mmy1 + mmy2
+
+mmy3 <- sample(c(1,3,5), 1)
+mmy1b <- 48 + 12 - mmy1 + mmy3
+
+mmy4 <- sample(c(7,8,10,12), 1)
+mmy1c <- 48 + 12 - mmy1 + mmy4
+
+## QUESTION/ANSWER GENERATION
+
+a <- k*(1+z1/12)^mmy1a
+
+b <- k*(1+z1/12)^mmy1b
+
+c <- k*(1+z1/12)^mmy1c
+
+@
+
+
+
+\begin{question}
+
+Am 30.\Sexpr{mmy1}.2014 wird ein Kapital in Höhe von \Sexpr{k} € zu einem jährlichen Zinssatz in Höhe von \Sexpr{z}\% bei monatlichen Zinsgutschrift angelegt. Wie hoch ist das Kapital bei Anwendung der Zinsmethode 30/360?
+
+\begin{answerlist}
+  \item am 31.\Sexpr{mmy2}.2015?
+	\item am 31.\Sexpr{mmy3}.2019?
+	\item am 31.\Sexpr{mmy4}.2019?
+\end{answerlist}
+
+\end{question}
+
+
+\begin{solution}
+
+\begin{answerlist}
+  \item $K_n = \Sexpr{k} \cdot (1 + \frac{\Sexpr{z1}}{12})^{\Sexpr{mmy1a}} = \Sexpr{round(a,2)}$
+	\item $K_n = \Sexpr{k} \cdot (1 + \frac{\Sexpr{z1}}{12})^{\Sexpr{mmy1b}} = \Sexpr{round(b,2)}$
+	\item $K_n = \Sexpr{k} \cdot (1 + \frac{\Sexpr{z1}}{12})^{\Sexpr{mmy1c}} = \Sexpr{round(c,2)}$
+\end{answerlist}
+
+\end{solution}
+
+
+
+%% META INFORMATION
+%% \extype{cloze}
+%% \exsolution{\Sexpr{round(a,2)}|\Sexpr{round(b,2)}|\Sexpr{round(c,2)}}
+%% \exclozetype{num|num|num}
